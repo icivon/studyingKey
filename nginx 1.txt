@@ -1,0 +1,35 @@
+系统版本 
+centos 7.2 
+nginx 下载链接
+http://nginx.org/download/nginx-1.11.5.tar.gz
+nginx版本1.11.5
+
+解压tar.gz
+tar xvzf nginx-1.11.5.tar.gz
+
+由于系统新安装，且是mini版。
+没有wget ,先安装wget.
+没有gcc ,安装gcc,并安装了gcc-devel
+
+然后执行./configure --prefix=/usr/local/nginx1-11-5
+果然报了http rewrite 模块错误
+安装模块 pcre
+再次安装nginx 
+又报了个 gzip 模块错误
+yum 安装 zlib 发现已经装上了，然后好吧。装个开发版。yum install zlib-devel
+再次执行 ./configure --prefix=/usr/local/nginx1-11-5
+Ok 过去了。
+一切就绪，开启编译。
+编译结束
+编译结束后，应该Nginx已经启动了。因为可以看到欢迎界面。
+但根据视频介绍
+进入安装目录后，会报端口被占用错误。
+但我 并没有去查看端口被谁占了。因为并没有apache  
+系统太精简了，我先补点工具。
+
+[root@e4f7143114d3 nginx1-11-5]# ./sbin/nginx
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
