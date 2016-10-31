@@ -26,6 +26,9 @@ Ok 过去了。
 进入安装目录后，会报端口被占用错误。
 但我 并没有去查看端口被谁占了。因为并没有apache  
 系统太精简了，我先补点工具。
+装完网络工具（yum install net-tools），最后看一下。占用端口的，原来是它自己。
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      7371/nginx: master  
+
 
 [root@e4f7143114d3 nginx1-11-5]# ./sbin/nginx
 nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
