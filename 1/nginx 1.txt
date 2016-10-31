@@ -19,7 +19,7 @@ tar xvzf nginx-1.11.5.tar.gz
 yum 安装 zlib 发现已经装上了，然后好吧。装个开发版。yum install zlib-devel
 再次执行 ./configure --prefix=/usr/local/nginx1-11-5
 Ok 过去了。
-一切就绪，开启编译。
+一切就绪，开始编译。make && make install
 编译结束
 编译结束后，应该Nginx已经启动了。因为可以看到欢迎界面。
 但根据视频介绍
