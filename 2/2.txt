@@ -4,9 +4,19 @@
 ps aux| grep nginx 
 使用此命令查看Nginx 当前进程ID
 Kill -INT ID值 
-干掉此进程
+kill -term ID值 也可
+结束此进程
 
 Kill —HUP ID值
 平滑切换至新配置
 
-未完待续
+kill -usr1 ID值 分段生成日志
+
+kill -usr2 用来升级nginx
+WINCH 可自动识别请求所到达的版本，自动分配新版本和旧版本
+
+Nginx.pid文件 存储当前nginx进程id
+若不想使用进程ID时 可访问此文件，自动识别进程ID
+kill -int `cat logs/nginx.pid`
+
+
