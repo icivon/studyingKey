@@ -1,0 +1,17 @@
+server {
+        listen       80;#监听端口
+        server_name  localhost;#域名
+
+        #charset koi8-r;
+
+        access_log  logs/host.access.log  main;#日志
+
+        location / {
+            root   html;#网站目录
+            index  index.html index.htm;#索引文件
+        }
+
+        error_page  404              /404.html;#404页面
+        }
+   
+
