@@ -1,3 +1,5 @@
+多站点
+
 server {
         listen       80;#监听端口
         server_name  localhost;#域名
