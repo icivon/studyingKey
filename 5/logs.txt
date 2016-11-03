@@ -1,0 +1,35 @@
+日志切割 
+
+所说的切割 ，准确来讲，就是按照特定的文件名格式，生成日志。
+然后，再移动到别的文件夹。
+具体实现 利用的是Linux  的shell脚本
+ ---------------------------------------
+ 脚本代码如下
+ ---------------------------------------
+  #!/bin/bash
+ #默认日志位置
+ LOG_PATH=/usr/local/nginx1102/logs/x.com.access.log
+ #移动到的位置
+ BASE_PATH=/data/$(date -d yesterday +%Y%m%d)
+ #创建dir  命名格式为 年月日
+ mkdir -p $BASE_PATH
+ #移动后的文件命名
+ bakname=$BASE_PATH/$(date -d yesterday +%H%M).x.com.access.log
+
+ #echo bakname
+ #转移日志文件 
+ mv $LOG_PATH $BASE_PATH
+ #创建新文件
+ touch $LOG_PATH
+ #启动Nginx日志分段设置
+ kill -USR1 `cat /usr/local/nginx1102/logs/nginx.pid`
+  ---------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
