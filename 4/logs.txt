@@ -25,7 +25,7 @@ main格式
 
    access_log  logs/access.log  main;
    --------------------------------------
-   
+   解除以上注释
    
     server {
         listen       80;
