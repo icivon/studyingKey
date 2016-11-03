@@ -1,0 +1,41 @@
+nginx  日志
+
+#access_log logs/host.access.log  main
+
+main格式 
+#log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+	
+	remote_addr   IP
+	time_local    时间
+	request       请求方式 + 路径
+	status        状态码  如，200 404  500
+	body_bytes_sent  数据bytes
+	http_referer   来源页面 请求页面
+	http_user_agent  浏览器类型
+	http_x_forwarded_for  可获得原始的IP地址的HTTP请求头字段
+	
+	#36.000.000.000 - - [02/Nov/2016:14:23:23 +0800] "GET /data/upload/banner/20161101/581827d3756ec.jpg HTTP/1.1" 200 244742 "http://www.xxxx.com/" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0"
+
+	--------------------------------------
+	log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                     '$status $body_bytes_sent "$http_referer" '
+                     '"$http_user_agent" "$http_x_forwarded_for"';
+
+   access_log  logs/access.log  main;
+   --------------------------------------
+   
+   
+    server {
+        listen       80;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+		
+		根据站点单独生成日志
+		access_log  logs/xx.com.access.log  main;
+		}
+		
