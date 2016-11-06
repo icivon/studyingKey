@@ -1,0 +1,40 @@
+精准匹配
+location =/ {
+            root   /data/www/web;
+            index  index.html index.htm;
+        }
+		
+一般匹配
+location / {
+            root   html;
+            index  index.html index.htm;
+        }
+================================================================
+首先看有没有精准匹配,如果有,则停止匹配过程.
+location = patt {
+    config A
+}
+如果 $uri == patt,匹配成功，使用configA
+   location = / {
+              root   /var/www/html/;
+             index  index.htm index.html;
+        }
+         
+  location / {
+             root   /usr/local/nginx/html;
+            index  index.html index.htm;
+  }
+
+如果访问　　http://xxx.com/
+定位流程是　
+1: 精准匹配中　”/”   ,得到index页为　　index.htm
+2: 再次访问 /index.htm , 此次内部转跳uri已经是”/index.htm” , 
+根目录为/usr/local/nginx/html
+3: 最终结果,访问了 /usr/local/nginx/html/index.htm
+================================================================
+
+主要匹配的是地址栏上的文件。
+当第一次匹配到结果后，匹配条件将会累加，然后再次匹配。
+此不好理解，要多次练习。
+
+
