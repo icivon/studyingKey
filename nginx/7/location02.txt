@@ -1,0 +1,31 @@
+location / {
+            root   /usr/local/nginx/html;
+            index  index.html index.htm;
+        }
+
+location ~ image {
+           root /var/www/image;
+           index index.html;
+}
+
+如果我们访问  http://xx.com/image/logo.png
+此时, “/” 与”/image/logo.png” 匹配
+同时,”image”正则 与”image/logo.png”也能匹配
+正则表达式的成果将会使用.
+图片真正会访问 /var/www/image/logo.png 
+==============================================================================
+location / {
+             root   /usr/local/nginx/html;
+             index  index.html index.htm;
+         }
+ 
+location /foo {
+            root /var/www/html;
+             index index.html;
+}
+我们访问 http://xxx.com/foo
+ 对于uri “/foo”,   两个location的patt,都能匹配他们
+即 ‘/’能从左前缀匹配 ‘/foo’, ‘/foo’也能左前缀匹配’/foo’,
+此时, 真正访问 /var/www/html/index.html 
+原因:’/foo’匹配的更长,因此使用之.;
+===========================================================
