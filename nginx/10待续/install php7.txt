@@ -78,6 +78,12 @@ cp -frp /usr/lib64/libldap* /usr/lib/
 12£¬configure: error: xslt-config not found. Please reinstall the libxslt >= 1.1.0 distribution
 yum install libxslt-devel
 
+13,/usr/bin/ld: cannot find -liconv
+	collect2: error: ld returned 1 exit status
+	make: *** [sapi/cli/php] ´íÎó 1
+
+yum -y install libtool-ltdl-devel
+#´ıĞø
 
 
 
