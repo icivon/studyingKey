@@ -12,13 +12,24 @@ rewrite #重写
  -----------------------------
  location / {
  
-			if( 判断条件 ){
+			if ( 判断条件 ){  #if和( 之间要有空格
 				#执行动作
 			}
 			#可多个if 判断
             root   html;
             index  index.html index.htm;
 		}
+		
+location / {
+	if (!-e $document_root$fastcgi_script_name){
+		#return 404 Not Fount;
+		rewrite ^.*$ /404.html;
+		break;
+	}
+	root   html;
+	index  index.html index.htm;
+}
+
 ----------------------------------------------
 if  ($remote_addr = 192.168.1.100) {
 	return 403;#如果IP地址是xxx，则返回403
