@@ -46,9 +46,20 @@ if ($http_user_agent ~ MSIE) {
  if (!-e $document_root$fastcgi_script_name) {
 	rewrite ^.*$ /404.html break;
 } 
-
 ----------------------------------------------
+if ($http_user_agent ~* msie) {
+	set $isie 1;
+}
 
+if ($fastcgi_script_name = ie.html) {
+	set $isie 0;
+}
+
+if ($isie 1) {
+	rewrite ^.*$ ie.html;
+}
+----------------------------------------------
+Nginx 可以获取到的参数
 
 cat conf/fastcgi.conf
 
