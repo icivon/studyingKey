@@ -1,0 +1,68 @@
+rewrite重写规则
+-------------------------------------------------------
+set #设置变量
+return #返回状态码 
+break #跳出rewrite
+rewrite #重写
+
+ = 判断是否相等
+ ~ 区分大小的正则
+ ~* 不区分大小写的正则
+ -f 文件  -d文件夹 -e是否存在.
+ -----------------------------
+ location / {
+ 
+			if( 判断条件 ){
+				#执行动作
+			}
+			#可多个if 判断
+            root   html;
+            index  index.html index.htm;
+		}
+----------------------------------------------
+if  ($remote_addr = 192.168.1.100) {
+	return 403;#如果IP地址是xxx，则返回403
+}
+
+
+if ($http_user_agent ~ MSIE) {
+#当判断浏览器为MSIE时会将页面定向是ie.html 但浏览器仍然为IE，所以会死循环，然后要用break,跳出。
+	rewrite ^.*$ /ie.htm;
+	break; 
+}
+#判断（文件及脚本名），当前请求文件 是否存在，不存在则404.
+#此只显示404内容，而当前url未改变，所以，仍然要break.否则死循环。
+ if (!-e $document_root$fastcgi_script_name) {
+	rewrite ^.*$ /404.html break;
+} 
+
+----------------------------------------------
+
+
+cat conf/fastcgi.conf
+
+fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+fastcgi_param  QUERY_STRING       $query_string;
+fastcgi_param  REQUEST_METHOD     $request_method;
+fastcgi_param  CONTENT_TYPE       $content_type;
+fastcgi_param  CONTENT_LENGTH     $content_length;
+
+fastcgi_param  SCRIPT_NAME        $fastcgi_script_name;
+fastcgi_param  REQUEST_URI        $request_uri;
+fastcgi_param  DOCUMENT_URI       $document_uri;
+fastcgi_param  DOCUMENT_ROOT      $document_root;
+fastcgi_param  SERVER_PROTOCOL    $server_protocol;
+fastcgi_param  REQUEST_SCHEME     $scheme;
+fastcgi_param  HTTPS              $https if_not_empty;
+
+fastcgi_param  GATEWAY_INTERFACE  CGI/1.1;
+fastcgi_param  SERVER_SOFTWARE    nginx/$nginx_version;
+
+fastcgi_param  REMOTE_ADDR        $remote_addr;
+fastcgi_param  REMOTE_PORT        $remote_port;
+fastcgi_param  SERVER_ADDR        $server_addr;
+fastcgi_param  SERVER_PORT        $server_port;
+fastcgi_param  SERVER_NAME        $server_name;
+
+# PHP only, required if PHP was built with --enable-force-cgi-redirect
+fastcgi_param  REDIRECT_STATUS    200;

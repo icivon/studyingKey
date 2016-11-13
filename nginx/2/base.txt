@@ -2,6 +2,9 @@
 
 主要讲解如何启动 关闭 重启Nginx
 根据进程ID　对Nginx进行 重启 关闭等操作
+./sbin/nginx  #start
+./sbin/nginx -s reload #重启
+
 
 ps aux| grep nginx 
 使用此命令查看Nginx 当前进程ID
