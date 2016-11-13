@@ -1,0 +1,28 @@
+nginx 配置
+-----------------------------------------------------
+./configure  --prefix=/usr/local/fastphp \
+--with-mysql=mysqlnd \
+--enable-mysqlnd \
+--with-gd \
+--enable-gd-native-ttf \
+--enable-gd-jis-conv
+--enable-fpm
+
+
+make && make install
+-----------------------------------------------------
+
+php.ini-->PHP_DIR/lib/php.ini
+
+php-fpm.conf  -->etc/php-fpm.conf 
+
+# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        #location ~ \.php$ {
+        #    root           html;   #php文件目录 web目录
+        #    fastcgi_pass   127.0.0.1:9000;  #进程端口
+        #    fastcgi_index  index.php;      #首页文件
+        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;    #目录/脚本名 
+        #    include        fastcgi_params;   #运行参数 
+        #}
+		

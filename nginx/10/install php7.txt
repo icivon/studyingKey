@@ -1,0 +1,90 @@
+编译安装PHP7
+centos 7
+--------------------------------------------------------------------------------------------------------------
+#rpm -qa | grep
+
+下载PHP 7.0.13
+wget http://cn2.php.net/distributions/php-7.0.13.tar.gz
+
+#mcrypt
+./configure --prefix=/usr/local/php7013 --with-config-file-path=/usr/local/php7013/etc --with-mysqli=/usr/local/mysql/ --with-mysqli=/usr/local/mysql/bin/mysql_config --with-pdo-mysql  --with-iconv-dir=/usr/local/ --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-zlib-dir --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-sysvshm --enable-inline-optimization --with-curl  --enable-mbregex  --enable-fpm --enable-mbstring --with-mcrypt --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-ldap=/usr/ --with-ldap-sasl --with-xmlrpc --enable-zip --enable-soap --enable-opcache --enable-ftp --enable-calendar --with-xsl --with-gettext --enable-session --enable-ctype --with-kerberos --with-libdir=/lib/ --with-pcre-regex --enable-exif --with-bz2
+
+#not mcrypt
+./configure --prefix=/usr/local/php7013 --with-config-file-path=/usr/local/php7013/etc --with-mysqli=/usr/local/mysql/ --with-mysqli=/usr/local/mysql/bin/mysql_config --with-pdo-mysql  --with-iconv-dir=/usr/local/ --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-zlib-dir --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-sysvshm --enable-inline-optimization --with-curl  --enable-mbregex  --enable-fpm --enable-mbstring --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-ldap=/usr/ --with-ldap-sasl --with-xmlrpc --enable-zip --enable-soap --enable-opcache --enable-ftp --enable-calendar --with-xsl --with-gettext --enable-session --enable-ctype --with-kerberos --with-libdir=/lib/ --with-pcre-regex --enable-exif --with-bz2
+
+#not mysql && not mysql-server
+./configure --prefix=/usr/local/php7013 --with-config-file-path=/usr/local/php7013/etc --with-pdo-mysql  --with-iconv-dir=/usr/local/ --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-zlib-dir --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-sysvshm --enable-inline-optimization --with-curl  --enable-mbregex  --enable-fpm --enable-mbstring --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-ldap=/usr/ --with-ldap-sasl --with-xmlrpc --enable-zip --enable-soap --enable-opcache --enable-ftp --enable-calendar --with-xsl --with-gettext --enable-session --enable-ctype --with-kerberos --with-libdir=/lib/ --with-pcre-regex --enable-exif --with-bz2
+
+make ZEND_EXTRA_LIBS='-liconv'
+make install
+
+cp php.ini-production /usr/local/php7013/etc/
+cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm7
+chmod 777 /etc/init.d/php-fpm7
+
+--------------------------------------------------------------------------------------------------------------
+1，若提示Libxml2 则需要安装开发包
+	Debian:libxml2-dev
+	RHEL:libxml2-devel。
+
+2，configure: error: Cannot find OpenSSL's <evp.h>
+yum install openssl-devel #安装 openssl 开发包
+
+3，configure: error: Please reinstall the BZip2 distribution
+yum instll bzip2-devel
+
+4,configure: error: Please reinstall the libcurl distribution - easy.h should be in <curl-dir>/include/curl/
+yum install libcurl-devel
+
+5,checking whether to enable JIS-mapped Japanese font support in GD... no
+	If configure fails try --with-webp-dir=<DIR>
+	configure: error: jpeglib.h not found.
+
+yum install libjpeg-devel
+
+6,checking whether to enable JIS-mapped Japanese font support in GD... no
+	If configure fails try --with-webp-dir=<DIR>
+	checking for jpeg_read_header in -ljpeg... yes
+	configure: error: png.h not found.
+
+yum install libpng-devel
+
+7,checking whether to enable JIS-mapped Japanese font support in GD... no
+	If configure fails try --with-webp-dir=<DIR>
+	checking for jpeg_read_header in -ljpeg... yes
+	checking for png_write_image in -lpng... yes
+	If configure fails try --with-xpm-dir=<DIR>
+	configure: error: freetype-config not found.
+
+yum install freetype-devel
+
+8,configure: error: Cannot find ldap.h
+#yum install openldap  #若不存在
+yum install openldap-devel
+
+9，configure: error: Cannot find ldap libraries in /usr///lib/.
+cp -frp /usr/lib64/libldap* /usr/lib/
+
+10，configure: error: mcrypt.h not found. Please reinstall libmcrypt.
+	#libmcrypt
+	
+11,checking whether to enable embedded MySQLi support... no
+	checking for specified location of the MySQL UNIX socket... no
+	mysql_config not found
+	configure: error: Please reinstall the mysql distribution
+
+#需要安装mysql 及相关服务
+
+12，configure: error: xslt-config not found. Please reinstall the libxslt >= 1.1.0 distribution
+yum install libxslt-devel
+
+
+
+
+
+
+
+
+
+
+

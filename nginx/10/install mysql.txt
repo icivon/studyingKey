@@ -1,0 +1,24 @@
+yum install mysql
+yum install mysql-server
+
+若yum  无法安装mysql-server
+# wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+	--2016-11-13 21:12:05--  http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+	正在解析主机 repo.mysql.com (repo.mysql.com)... 184.87.152.67
+	正在连接 repo.mysql.com (repo.mysql.com)|184.87.152.67|:80... 已连接。
+	已发出 HTTP 请求，正在等待回应... 200 OK
+	长度：6140 (6.0K) [application/x-redhat-package-manager]
+	正在保存至: “mysql-community-release-el7-5.noarch.rpm”
+	100%[===========================================================>] 6,140       --.-K/s 用时 0s      
+	2016-11-13 21:12:06 (309 MB/s) - 已保存 “mysql-community-release-el7-5.noarch.rpm” [6140/6140])
+# ls
+	  mysql-community-release-el7-5.noarch.rpm  
+# rpm -ivh mysql-community-release-el7-5.noarch.rpm 
+	准备中...                          ################################# [100%]
+	正在升级/安装...
+	   1:mysql-community-release-el7-5    ################################# [100%]
+# ls -1 /etc/yum.repos.d/mysql-community*
+	/etc/yum.repos.d/mysql-community.repo
+	/etc/yum.repos.d/mysql-community-source.repo
+# yum install mysql-server  
+
