@@ -22,3 +22,9 @@ yum install mysql-server
 	/etc/yum.repos.d/mysql-community-source.repo
 # yum install mysql-server  
 
+service mysqld start 
+若3306端口被启用，宣告OK
+#mysql -u root -p  
+
+go go go !!!
+

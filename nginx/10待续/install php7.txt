@@ -1,7 +1,10 @@
 编译安装PHP7
 centos 7
 --------------------------------------------------------------------------------------------------------------
-#rpm -qa | grep
+番外
+#rpm -qa | grep xxx
+#yum  -y groupinstall  "Development Tools"
+--------------------------------------------------------------------------------------------------------------
 
 下载PHP 7.0.13
 wget http://cn2.php.net/distributions/php-7.0.13.tar.gz
@@ -12,7 +15,7 @@ wget http://cn2.php.net/distributions/php-7.0.13.tar.gz
 #not mcrypt
 ./configure --prefix=/usr/local/php7013 --with-config-file-path=/usr/local/php7013/etc --with-mysqli=/usr/local/mysql/ --with-mysqli=/usr/local/mysql/bin/mysql_config --with-pdo-mysql  --with-iconv-dir=/usr/local/ --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-zlib-dir --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-sysvshm --enable-inline-optimization --with-curl  --enable-mbregex  --enable-fpm --enable-mbstring --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-ldap=/usr/ --with-ldap-sasl --with-xmlrpc --enable-zip --enable-soap --enable-opcache --enable-ftp --enable-calendar --with-xsl --with-gettext --enable-session --enable-ctype --with-kerberos --with-libdir=/lib/ --with-pcre-regex --enable-exif --with-bz2
 
-#not mysql && not mysql-server
+#not mcrypt && not mysql && not mysql-server
 ./configure --prefix=/usr/local/php7013 --with-config-file-path=/usr/local/php7013/etc --with-pdo-mysql  --with-iconv-dir=/usr/local/ --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-zlib-dir --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-sysvshm --enable-inline-optimization --with-curl  --enable-mbregex  --enable-fpm --enable-mbstring --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-ldap=/usr/ --with-ldap-sasl --with-xmlrpc --enable-zip --enable-soap --enable-opcache --enable-ftp --enable-calendar --with-xsl --with-gettext --enable-session --enable-ctype --with-kerberos --with-libdir=/lib/ --with-pcre-regex --enable-exif --with-bz2
 
 make ZEND_EXTRA_LIBS='-liconv'
@@ -78,12 +81,58 @@ cp -frp /usr/lib64/libldap* /usr/lib/
 12，configure: error: xslt-config not found. Please reinstall the libxslt >= 1.1.0 distribution
 yum install libxslt-devel
 
-13,/usr/bin/ld: cannot find -liconv
+13-01,/usr/bin/ld: cannot find -liconv
 	collect2: error: ld returned 1 exit status
 	make: *** [sapi/cli/php] 错误 1
 
-yum -y install libtool-ltdl-devel
-#待续
+yum -y install libtool-ltdl-devel #此1
+
+yum -y install libtool  #可选 此2 并未解决问题
+
+#make ZEND_EXTRA_LIBS='-liconv'
+
+#http://ftp.gnu.org/pub/gnu/libiconv/
+#wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
+
+tar -zxvf xxxx
+cd xxxx
+./configure --prefix=/usr/local/libiconv
+可正常configure 
+但make 报错
+/* 
+In file included from progname.c:26:0:
+./stdio.h:1010:1: 错误：‘gets’未声明(不在函数内)
+ _GL_WARN_ON_USE (gets, "gets is a security hole - use fgets instead");
+ ^
+make[2]: *** [progname.o] 错误 1
+make[2]: 离开目录“/root/libiconv-1.14/srclib”
+make[1]: *** [all] 错误 2
+make[1]: 离开目录“/root/libiconv-1.14/srclib”
+make: *** [all] 错误 2
+ */
+make
+make install
+
+13-02,
+若直接make  非 make ZEND_EXTRA_LIBS='-liconv'
+报以下错误
+/usr/bin/ld: ext/ldap/.libs/ldap.o: undefined reference to symbol 'ber_strdup'
+/usr/bin/ld: note: 'ber_strdup' is defined in DSO /lib64/liblber-2.4.so.2 so try adding it to the linker command line
+/lib64/liblber-2.4.so.2: could not read symbols: Invalid operation
+collect2: error: ld returned 1 exit status
+make: *** [sapi/cli/php] 错误 1
+
+13-03，
+ #make EXTRA_LIBS='-llber'
+ 报以下错误
+/usr/bin/ld: ext/standard/.libs/dns.o: undefined reference to symbol '__dn_skipname@@GLIBC_2.2.5'
+/usr/bin/ld: note: '__dn_skipname@@GLIBC_2.2.5' is defined in DSO /lib64/libresolv.so.2 so try adding it to the linker command line
+/lib64/libresolv.so.2: could not read symbols: Invalid operation
+collect2: error: ld returned 1 exit status
+make: *** [sapi/cli/php] 错误 1
+[root@bogon php-7.0.13]# 
+
+
 
 
 
