@@ -34,7 +34,7 @@ chmod 777 /etc/init.d/php-fpm7
 yum install openssl-devel #安装 openssl 开发包
 
 3，configure: error: Please reinstall the BZip2 distribution
-yum instll bzip2-devel
+yum install bzip2-devel
 
 4,configure: error: Please reinstall the libcurl distribution - easy.h should be in <curl-dir>/include/curl/
 yum install libcurl-devel
