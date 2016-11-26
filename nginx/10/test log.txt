@@ -1,0 +1,103 @@
+TIME END 2016-11-26 14:26:29
+
+=====================================================================
+TEST RESULT SUMMARY
+---------------------------------------------------------------------
+Exts skipped    :   31
+Exts tested     :   44
+---------------------------------------------------------------------
+
+Number of tests : 14292             11374
+Tests skipped   : 2918 ( 20.4%) --------
+Tests warned    :    7 (  0.0%) (  0.1%)
+Tests failed    :   15 (  0.1%) (  0.1%)
+Expected fail   :   37 (  0.3%) (  0.3%)
+Tests passed    : 11315 ( 79.2%) ( 99.5%)
+---------------------------------------------------------------------
+Time taken      :  503 seconds
+=====================================================================
+
+=====================================================================
+EXPECTED FAILED TEST SUMMARY
+---------------------------------------------------------------------
+Test open_basedir configuration [tests/security/open_basedir_linkinfo.phpt]  XFAIL REASON: BUG: open_basedir cannot delete symlink to prohibited file. See also
+bugs 48111 and 52176.
+Inconsistencies when accessing protected members [Zend/tests/access_modifiers_008.phpt]  XFAIL REASON: Discussion: http://marc.info/?l=php-internals&m=120221184420957&w=2
+Inconsistencies when accessing protected members - 2 [Zend/tests/access_modifiers_009.phpt]  XFAIL REASON: Discussion: http://marc.info/?l=php-internals&m=120221184420957&w=2
+Bug #48770 (call_user_func_array() fails to call parent from inheriting class) [Zend/tests/bug48770.phpt]  XFAIL REASON: See Bug #48770
+Bug #48770 (call_user_func_array() fails to call parent from inheriting class) [Zend/tests/bug48770_2.phpt]  XFAIL REASON: See Bug #48770
+Bug #48770 (call_user_func_array() fails to call parent from inheriting class) [Zend/tests/bug48770_3.phpt]  XFAIL REASON: See Bug #48770
+Initial value of static var in method depends on the include time of the class definition [Zend/tests/method_static_var.phpt]  XFAIL REASON: Maybe not a bug
+Bug #70228 (memleak if return in finally block) [Zend/tests/try/bug70228.phpt]  XFAIL REASON: See https://bugs.php.net/bug.php?id=70228
+DateTime::add() -- fall type2 type3 [ext/date/tests/DateTime_add-fall-type2-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::add() -- fall type3 type2 [ext/date/tests/DateTime_add-fall-type3-type2.phpt]  XFAIL REASON: Various bugs exist
+DateTime::add() -- fall type3 type3 [ext/date/tests/DateTime_add-fall-type3-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::add() -- spring type2 type3 [ext/date/tests/DateTime_add-spring-type2-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::add() -- spring type3 type2 [ext/date/tests/DateTime_add-spring-type3-type2.phpt]  XFAIL REASON: Various bugs exist
+DateTime::add() -- spring type3 type3 [ext/date/tests/DateTime_add-spring-type3-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::diff() -- fall type2 type3 [ext/date/tests/DateTime_diff-fall-type2-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::diff() -- fall type3 type2 [ext/date/tests/DateTime_diff-fall-type3-type2.phpt]  XFAIL REASON: Various bugs exist
+DateTime::diff() -- fall type3 type3 [ext/date/tests/DateTime_diff-fall-type3-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::diff() -- spring type2 type3 [ext/date/tests/DateTime_diff-spring-type2-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::diff() -- spring type3 type2 [ext/date/tests/DateTime_diff-spring-type3-type2.phpt]  XFAIL REASON: Various bugs exist
+DateTime::diff() -- spring type3 type3 [ext/date/tests/DateTime_diff-spring-type3-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::sub() -- fall type2 type3 [ext/date/tests/DateTime_sub-fall-type2-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::sub() -- fall type3 type2 [ext/date/tests/DateTime_sub-fall-type3-type2.phpt]  XFAIL REASON: Various bugs exist
+DateTime::sub() -- fall type3 type3 [ext/date/tests/DateTime_sub-fall-type3-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::sub() -- spring type2 type3 [ext/date/tests/DateTime_sub-spring-type2-type3.phpt]  XFAIL REASON: Various bugs exist
+DateTime::sub() -- spring type3 type2 [ext/date/tests/DateTime_sub-spring-type3-type2.phpt]  XFAIL REASON: Various bugs exist
+DateTime::sub() -- spring type3 type3 [ext/date/tests/DateTime_sub-spring-type3-type3.phpt]  XFAIL REASON: Various bugs exist
+Bug #55407 (Impossible to prototype DateTime::createFromFormat) [ext/date/tests/bug55407.phpt]  XFAIL REASON: Bug #55407
+RFC: DateTime and Daylight Saving Time Transitions (zone type 3, bd2) [ext/date/tests/rfc-datetime_and_daylight_saving_time-type3-bd2.phpt]  XFAIL REASON: Still not quite right
+RFC: DateTime and Daylight Saving Time Transitions (zone type 3, fs) [ext/date/tests/rfc-datetime_and_daylight_saving_time-type3-fs.phpt]  XFAIL REASON: Still not quite right
+Bug #42718 (unsafe_raw filter not applied when configured as default filter) [ext/filter/tests/bug42718.phpt]  XFAIL REASON: FILTER_UNSAFE_RAW not applied when configured as default filter, even with flags
+Bug #67296 (filter_input doesn't validate variables) [ext/filter/tests/bug49184.phpt]  XFAIL REASON: See Bug #49184
+Bug #67167: filter_var(null,FILTER_VALIDATE_BOOLEAN,FILTER_NULL_ON_FAILURE) returns null [ext/filter/tests/bug67167.02.phpt]  XFAIL REASON: Requires php_zval_filter to not use convert_to_string for all filters.
+Bug #53640 (XBM images require width to be multiple of 8) [ext/gd/tests/bug53640.phpt]  XFAIL REASON: Padding is not implemented yet
+Phar: bug #69958: Segfault in Phar::convertToData on invalid file [ext/phar/tests/bug69958.phpt]  XFAIL REASON: Still has memory leaks, see https://bugs.php.net/bug.php?id=70005
+Test basic function : variation3 use_trans_sid [ext/session/tests/session_basic3.phpt]  XFAIL REASON: Waiting url_scanner_ex.re fix. https://bugs.php.net/bug.php?id=68970
+Bug #70470 (Built-in server truncates headers spanning over TCP packets) [sapi/cli/tests/bug70470.phpt]  XFAIL REASON: bug is not fixed yet
+FPM: Test various messages on start, from master and childs [sapi/fpm/tests/015.phpt]  XFAIL REASON: randomly intermittently failing all the time in CI,
+ERROR: unable to read what child say: Bad file descriptor (9)
+catch_workers_output = yes seems not reliable
+=====================================================================
+
+=====================================================================
+FAILED TEST SUMMARY
+---------------------------------------------------------------------
+Bug #64267 (CURLOPT_INFILE doesn't allow reset) [ext/curl/tests/bug64267.phpt]
+Bug # #68937 (Segfault in curl_multi_exec) [ext/curl/tests/bug68937.phpt]
+Bug # #68937 (Segfault in curl_multi_exec) [ext/curl/tests/bug68937_2.phpt]
+Multicast support: IPv4 receive options [ext/sockets/tests/mcast_ipv4_recv.phpt]
+socket_import_stream: Test with multicasting [ext/sockets/tests/socket_import_stream-3.phpt]
+FPM: Startup and connect [sapi/fpm/tests/002.phpt]
+FPM: Test Unix Domain Socket [sapi/fpm/tests/009.phpt]
+FPM: Test status page [sapi/fpm/tests/010.phpt]
+FPM: Test IPv4 all addresses (bug #68420) [sapi/fpm/tests/011.phpt]
+FPM: Test reload configuration (bug #68442) [sapi/fpm/tests/012.phpt]
+FPM: Test for log_level in fpm_unix_init_main #68381 [sapi/fpm/tests/013.phpt]
+FPM: Test for pm.start_servers default calculation message being a notice and not a warning #68458 [sapi/fpm/tests/014.phpt]
+FPM: Test fastcgi_finish_request function [sapi/fpm/tests/017.phpt]
+FPM: Test global prefix [sapi/fpm/tests/019.phpt]
+FPM: Test pool prefix [sapi/fpm/tests/020.phpt]
+=====================================================================
+
+=====================================================================
+WARNED TEST SUMMARY
+---------------------------------------------------------------------
+Temporary leak on exception [Zend/tests/temporary_cleaning_001.phpt] (warn: XFAIL section but test passes)
+Fundamental memory leak test on temporaries [Zend/tests/temporary_cleaning_003.phpt] (warn: XFAIL section but test passes)
+Temporary leak with switch [Zend/tests/temporary_cleaning_004.phpt] (warn: XFAIL section but test passes)
+Temporary leak with foreach [Zend/tests/temporary_cleaning_005.phpt] (warn: XFAIL section but test passes)
+Exception after separation during indirect write to fcall result [Zend/tests/temporary_cleaning_006.phpt] (warn: XFAIL section but test passes)
+Bug #70172 - Use After Free Vulnerability in unserialize() [ext/standard/tests/serialize/bug70172_2.phpt] (warn: XFAIL section but test passes)
+Bug #70219 Use after free vulnerability in session deserializer [ext/standard/tests/serialize/bug70219.phpt] (warn: XFAIL section but test passes)
+=====================================================================
+
+You may have found a problem in PHP.
+This report can be automatically sent to the PHP QA team at
+http://qa.php.net/reports and http://news.php.net/php.qa.reports
+This gives us a better understanding of PHP's behavior.
+If you don't want to send the report immediately you can choose
+option "s" to save it.	You can then email it to qa-reports@lists.php.net later.
+Do you want to send this report now? [Yns]: 
