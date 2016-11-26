@@ -1,0 +1,60 @@
+编译安装PHP7
+centos 7
+---------------------------------------------
+yum update 
+
+yum upgrade
+---------------------------------------------
+download php7  
+wget http://cn2.php.net/distributions/php-7.0.13.tar.gz
+
+tar -zxvf php-7.0.13.tar.gz
+cd php-7.0.13
+
+./configure --prefix=/usr/local/php  --with-curl  --with-freetype-dir  --with-gd  --with-gettext  --with-iconv-dir  --with-kerberos  --with-libdir=lib64 --with-libxml-dir  --with-mysqli  --with-openssl  --with-pcre-regex --with-pdo-mysql  --with-pdo-sqlite  --with-pear  --with-png-dir  --with-xmlrpc  --with-xsl  --with-zlib  --enable-fpm  --enable-bcmath  --enable-libxml  --enable-inline-optimization  --enable-gd-native-ttf  --enable-mbregex  --enable-mbstring  --enable-opcache  --enable-pcntl  --enable-shmop  --enable-soap  --enable-sockets  --enable-sysvsem  --enable-xml  --enable-zip
+
+yum -y install xxx-devel
+
+make &&  make install
+
+#Can run 'make test', test whether the success of the compiler
+
+ cp php.ini-development /usr/local/php/lib/php.ini
+ cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
+ cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf
+ cp -R ./sapi/fpm/php-fpm /etc/init.d/php-fpm
+
+
+# start php 
+ /etc/init.d/php-fpm
+# restart
+ killall php-fpm
+ /etc/init.d/php-fpm
+ 
+#version
+usr/local/php/bin/php -v
+
+# $PATH
+#edit /etc/profile
+----------------------------
+PATH=$PATH:/usr/local/php/bin
+export PATH
+----------------------------
+source /etc/profile
+
+php -v
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
