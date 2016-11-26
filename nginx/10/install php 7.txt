@@ -33,6 +33,9 @@ make &&  make install
  
 #version
 usr/local/php/bin/php -v
+#or
+cd usr/local/php/bin
+php -v
 
 # $PATH
 #edit /etc/profile
